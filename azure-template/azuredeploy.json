@@ -27,7 +27,7 @@
     "resources": [
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2019-12-01",
+            "apiVersion": "2023-09-01",
             "name": "k8s-vm",
             "location": "[resourceGroup().location]",
             "properties": {
@@ -61,8 +61,8 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines/extensions",
-            "apiVersion": "2019-12-01",
-            "name": "myCustomScriptExtension",
+            "apiVersion": "2023-09-01",
+            "name": "k8s-vm/installVagrant",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/virtualMachines', 'k8s-vm')]"
@@ -73,7 +73,9 @@
                 "typeHandlerVersion": "1.10",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                    "fileUris":""  
+                    "fileUris": [ "https://raw.githubusercontent.com/mahendra-shinde/k8s-vagrant-azure/refs/heads/main/azure-template/install-vagrant.ps1" ],
+                    "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File install-vagrant.ps1"
+
                 },
                 "protectedSettings": {
                     "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File install-vagrant.ps1"
