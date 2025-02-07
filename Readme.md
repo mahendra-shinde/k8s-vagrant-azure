@@ -13,7 +13,7 @@ This repository contains scripts and templates to set up a Kubernetes environmen
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/your-repo/k8s-vagrant-azure.git
+    git clone https://github.com/mahendra-shinde/k8s-vagrant-azure
     cd k8s-vagrant-azure
     ```
 
