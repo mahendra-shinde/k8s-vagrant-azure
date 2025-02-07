@@ -8,6 +8,13 @@
                 "description": "Admin username for the virtual machine"
             }
         },
+        "location": {
+            "type": "string",
+            "metadata":{
+                "defaultValue":"[resourceGroup().location]",
+                "description":"Location of resources"
+            }
+        },
         "vmSize": {
             "type": "string",
             "defaultValue": "Standard_DS1_v2",
@@ -29,7 +36,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2023-09-01",
             "name": "k8s-vm",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "[parameters('vmSize')]"
@@ -63,7 +70,7 @@
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "apiVersion": "2023-09-01",
             "name": "k8s-vm/installVagrant",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/virtualMachines', 'k8s-vm')]"
             ],
